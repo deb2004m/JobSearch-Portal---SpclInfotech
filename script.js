@@ -403,12 +403,17 @@ let filtered = [...JOBS];
    THEME
    ========================================================= */
 function toggleTheme() {
-  state.theme = state.theme === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", state.theme);
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+  document.documentElement.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+
   document.getElementById("moonIcon").style.display =
-    state.theme === "dark" ? "block" : "none";
+    newTheme === "dark" ? "block" : "none";
   document.getElementById("sunIcon").style.display =
-    state.theme === "light" ? "block" : "none";
+    newTheme === "light" ? "block" : "none";
 }
 
 document
